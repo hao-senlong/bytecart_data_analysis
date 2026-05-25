@@ -2,8 +2,7 @@
 
 ## Client Background
 
-ByteCart is a South Korea–based e-commerce company specialising in consumer electronics and accessories. The company operates across a broad range of product categories, including smartphones, computing devices, audio equipment and related accessories.
-The dataset used in this project spans a four-year period and contains transactional and operational information for more than 50,000 orders placed by approximately 2,800 customers. The available data covers several business dimensions, including:
+ByteCart is a South Korea–based e-commerce company specialising in consumer electronics and accessories. The dataset used in this project spans a four-year period and contains transactional and operational information for more than 50,000 orders placed by approximately 2,800 customers. The available data covers several business dimensions, including:
 
 - Sales and revenue performance
 - Order-level transaction data
