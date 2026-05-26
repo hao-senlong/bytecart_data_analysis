@@ -87,7 +87,7 @@ WHERE  NOT REGEXP_LIKE(product_id, '^PRD[0-9]{4}$');
 
 -- Inspect
 
-SELECT DISTINCT product_name
+SELECT product_name
 FROM   products_clean
 ORDER BY 1;
 
@@ -128,10 +128,26 @@ SELECT DISTINCT category
 FROM   products_clean
 ORDER BY 1;
 
--- Finding: inconsistent formatting
+-- Finding: inconsistent spacing, use of '&' signs, and uppercase values.
+
+-- Inspect: categories written fully in upper or lowercase.
+SELECT DISTINCT category
+FROM   products_clean
+WHERE  BINARY UPPER(TRIM(category)) = BINARY TRIM(category)
+	OR  BINARY LOWER(TRIM(category)) = BINARY TRIM(category)
+ORDER BY 1;
+
+-- Finding: uppercase category values found.
 
 UPDATE products_clean
-SET    category = TRIM(REPLACE(category, 'and', '&'));
+SET    category = CASE
+           WHEN UPPER(TRIM(category)) = 'AUDIO'                THEN 'Audio'
+           WHEN UPPER(TRIM(category)) = 'COMPUTER PERIPHERALS' THEN 'Computer Peripherals'
+           WHEN UPPER(TRIM(category)) = 'GAMING'               THEN 'Gaming'
+           WHEN UPPER(TRIM(category)) = 'MOBILE ACCESSORIES'   THEN 'Mobile Accessories'
+           WHEN UPPER(TRIM(category)) = 'SMART HOME'           THEN 'Smart Home'
+           ELSE TRIM(REPLACE(category, 'and', '&'))
+       END;
 
 -- ─────────────────────────────────────────────────────────────
 -- SECTION 4  │  subcategory
@@ -142,6 +158,13 @@ SELECT DISTINCT subcategory
 FROM   products_clean
 ORDER BY 1;
 
+-- Inspect: subcategories written fully in uppercase or lowercase.
+SELECT DISTINCT subcategory
+FROM   products_clean
+WHERE  BINARY UPPER(TRIM(subcategory)) = BINARY TRIM(subcategory)
+   OR  BINARY LOWER(TRIM(subcategory)) = BINARY TRIM(subcategory)
+ORDER BY 1;
+
 -- Finding: lowercase and uppercase variants present.
 --          A simple CONCAT title-case approach is not used because
 --          several subcategories contain abbreviations or multi-word
@@ -149,12 +172,22 @@ ORDER BY 1;
 --          'OLED TVs', 'DSLR Cameras').
 
 UPDATE products_clean
-SET    subcategory = CASE LOWER(TRIM(subcategory))
-			WHEN 'desktop pcs' then 'Desktop PCs'
-			WHEN 'external storage' THEN 'External Storage'
-			WHEN 'phone mounts' THEN 'Phone Mounts'
-			WHEN 'projectors' THEN 'Projectors'
-			ELSE TRIM(subcategory)
+SET    subcategory = CASE
+           WHEN LOWER(TRIM(subcategory)) = 'camera accessories'       THEN 'Camera Accessories'
+           WHEN LOWER(TRIM(subcategory)) = 'chargers & cables'        THEN 'Chargers & Cables'
+           WHEN LOWER(TRIM(subcategory)) = 'controllers & accessories' THEN 'Controllers & Accessories'
+           WHEN LOWER(TRIM(subcategory)) = 'desktop pcs'              THEN 'Desktop PCs'
+           WHEN LOWER(TRIM(subcategory)) = 'external storage'         THEN 'External Storage'
+           WHEN LOWER(TRIM(subcategory)) = 'health monitors'          THEN 'Health Monitors'
+           WHEN LOWER(TRIM(subcategory)) = 'laptops'                  THEN 'Laptops'
+           WHEN LOWER(TRIM(subcategory)) = 'phone cases'              THEN 'Phone Cases'
+           WHEN LOWER(TRIM(subcategory)) = 'phone mounts'             THEN 'Phone Mounts'
+           WHEN LOWER(TRIM(subcategory)) = 'projectors'               THEN 'Projectors'
+           WHEN LOWER(TRIM(subcategory)) = 'screen protectors'        THEN 'Screen Protectors'
+           WHEN LOWER(TRIM(subcategory)) = 'tablets'                  THEN 'Tablets'
+           WHEN LOWER(TRIM(subcategory)) = 'tv accessories'           THEN 'TV Accessories'
+           WHEN LOWER(TRIM(subcategory)) = 'wireless accessories'     THEN 'Wireless Accessories'
+           ELSE TRIM(subcategory)
        END;
 
 
@@ -167,7 +200,15 @@ SELECT DISTINCT brand
 FROM   products_clean
 ORDER BY 1;
 
--- Finding: no formatting issues.
+-- Inspect: brands written fully in uppercase or lowercase.
+SELECT DISTINCT brand
+FROM   products_clean
+WHERE  BINARY UPPER(TRIM(brand)) = BINARY TRIM(brand)
+   OR  BINARY LOWER(TRIM(brand)) = BINARY TRIM(brand)
+ORDER BY 1;
+
+-- Finding: only brands expected to be uppercase are present
+--          (e.g. ASUS). No action needed.
 
 -- Check: brand should match the start of product_name.
 SELECT product_name, brand
@@ -263,22 +304,7 @@ MODIFY COLUMN discontinue_date DATE;
 -- SECTION 9  │  NULL audit
 -- ─────────────────────────────────────────────────────────────
 
-SELECT
-    SUM(CASE WHEN product_id       IS NULL THEN 1 ELSE 0 END) AS null_product_id,
-    SUM(CASE WHEN product_name     IS NULL THEN 1 ELSE 0 END) AS null_product_name,
-    SUM(CASE WHEN category         IS NULL THEN 1 ELSE 0 END) AS null_category,
-    SUM(CASE WHEN subcategory      IS NULL THEN 1 ELSE 0 END) AS null_subcategory,
-    SUM(CASE WHEN base_price       IS NULL THEN 1 ELSE 0 END) AS null_base_price,
-    SUM(CASE WHEN unit_cost        IS NULL THEN 1 ELSE 0 END) AS null_unit_cost,
-    SUM(CASE WHEN base_margin      IS NULL THEN 1 ELSE 0 END) AS null_base_margin,
-    SUM(CASE WHEN launch_date      IS NULL THEN 1 ELSE 0 END) AS null_launch_date,
-    SUM(CASE WHEN discontinue_date IS NULL THEN 1 ELSE 0 END) AS null_discontinue_date
-FROM products_clean;
-
--- Expected NULLs:
---   discontinue_date : NULL for all active products — expected
--- Unexpected NULLs:
---   Any other column with NULLs should be investigated
+-- The only remaning NULLs are in discontinue_date — expected
 
 -- Note: is_active, stock_quantity, weight_kg, and reorder_point are
 --       not used in downstream analysis and have been left as-is.
