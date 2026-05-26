@@ -109,7 +109,7 @@ ORDER BY 1;
 
 UPDATE orders_clean
 SET    order_status = CASE
-           WHEN LOWER(TRIM(order_status)) LIKE 'deliv%' THEN 'Delivered'
+           WHEN LOWER(TRIM(order_status)) LIKE 'd%' THEN 'Delivered'
            WHEN LOWER(TRIM(order_status)) LIKE 'canc%'  THEN 'Cancelled'
            ELSE TRIM(order_status)
        END;
