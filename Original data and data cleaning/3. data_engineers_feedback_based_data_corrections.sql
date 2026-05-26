@@ -112,6 +112,7 @@ USE bytecart_data;
 -- SECTION 2  |  final table creation
 -- ------------------------------------------------------------
 
+
 -- Customers: keep only analytical customer attributes. Exclude PII,
 -- registration_date, and cross-table flag columns.
 
@@ -128,7 +129,7 @@ CREATE TABLE customers_final AS
     FROM   customers_clean;
 
 
--- Orders: keep order-level analytical fields. Replace total_quantity
+-- Orders: keep order-level analytical attributes. Replace total_quantity
 -- with the corrected value, set cancelled zero-value orders to 0, and
 -- exclude flag columns.
 
@@ -216,8 +217,7 @@ CREATE TABLE deliveries_final AS
 
 
 -- Products: keep catalogue and pricing fields used for analysis.
--- Exclude reorder_point, weight_kg, and is_active. Keep
--- discontinue_date because it can support product lifecycle analysis.
+-- Exclude reorder_point, weight_kg, and is_active.
 
 DROP TABLE IF EXISTS products_final;
 
@@ -231,7 +231,6 @@ CREATE TABLE products_final AS
         base_price,
         unit_cost,
         base_margin,
-        stock_quantity,
         launch_date,
         discontinue_date
     FROM   products_clean;
@@ -239,6 +238,9 @@ CREATE TABLE products_final AS
 -- ------------------------------------------------------------
 -- SECTION 3  |  CSV exports
 -- ------------------------------------------------------------
+
+-- NULL values are converted to empty strings to avoid '\N'
+-- values in Tableau.
 
 SELECT
     customer_id, gender, age, tier, region, city
@@ -254,7 +256,7 @@ FROM (
     SELECT
         customer_id,
         gender,
-        CAST(age AS CHAR),
+        COALESCE(CAST(age AS CHAR), ''),
         tier,
         region,
         city
@@ -290,10 +292,10 @@ FROM (
         CAST(order_date AS CHAR),
         order_status,
         payment_method,
-        CAST(shipping_days AS CHAR),
-        CAST(delivery_date AS CHAR),
+        COALESCE(CAST(shipping_days AS CHAR), ''),
+        COALESCE(CAST(delivery_date AS CHAR), ''),
         CAST(total_revenue AS CHAR),
-        CAST(total_profit AS CHAR),
+        COALESCE(CAST(total_profit AS CHAR), ''),
         CAST(total_quantity AS CHAR),
         CAST(num_items AS CHAR)
     FROM   orders_final
@@ -336,9 +338,9 @@ FROM (
         CAST(item_revenue AS CHAR),
         CAST(item_cogs AS CHAR),
         CAST(item_profit AS CHAR),
-        CAST(profit_margin AS CHAR),
-        CAST(review_score AS CHAR),
-        review_text
+        COALESCE(CAST(profit_margin AS CHAR), ''),
+        COALESCE(CAST(review_score AS CHAR), ''),
+        COALESCE(review_text, '')
     FROM   order_items_final
 ) AS export_order_items
 INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/order_items_final.csv'
@@ -373,15 +375,15 @@ FROM (
         delivery_id,
         order_id,
         customer_id,
-        courier,
+        COALESCE(courier, ''),
         CAST(promised_delivery_date AS CHAR),
         CAST(actual_delivery_date AS CHAR),
         CAST(first_attempt_date AS CHAR),
         CAST(delay_days AS CHAR),
         package_condition,
         CAST(is_returned AS CHAR),
-        return_reason,
-        CAST(delivery_satisfaction AS CHAR),
+        COALESCE(return_reason, ''),
+        COALESCE(CAST(delivery_satisfaction AS CHAR), ''),
         CAST(complaint_raised AS CHAR)
     FROM   deliveries_final
 ) AS export_deliveries
@@ -394,7 +396,7 @@ LINES TERMINATED BY '\n';
 SELECT
     product_id, product_name, category, subcategory,
     brand, base_price, unit_cost, base_margin,
-    stock_quantity, launch_date, discontinue_date
+    launch_date, discontinue_date
 FROM (
     SELECT
         'product_id'        AS product_id,
@@ -405,7 +407,6 @@ FROM (
         'base_price'        AS base_price,
         'unit_cost'         AS unit_cost,
         'base_margin'       AS base_margin,
-        'stock_quantity'    AS stock_quantity,
         'launch_date'       AS launch_date,
         'discontinue_date'  AS discontinue_date
     UNION ALL
@@ -418,9 +419,8 @@ FROM (
         CAST(base_price AS CHAR),
         CAST(unit_cost AS CHAR),
         CAST(base_margin AS CHAR),
-        CAST(stock_quantity AS CHAR),
         CAST(launch_date AS CHAR),
-        CAST(discontinue_date AS CHAR)
+        COALESCE(CAST(discontinue_date AS CHAR), '')
     FROM   products_final
 ) AS export_products
 INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/products_final.csv'
