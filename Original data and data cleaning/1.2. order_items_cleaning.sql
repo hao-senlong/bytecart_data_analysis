@@ -282,7 +282,10 @@ SET    review_score = CASE
 UPDATE order_items_clean
 SET    flag_review_unrealistic = TRUE
 WHERE  review_score IS NOT NULL
-  AND  CAST(review_score AS SIGNED) > 5 or CAST(review_score AS SIGNED) < 0;
+  AND  (
+           CAST(review_score AS SIGNED) > 5
+        OR CAST(review_score AS SIGNED) < 1
+       );
 
 ALTER TABLE order_items_clean
 MODIFY COLUMN review_score INT;
