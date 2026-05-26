@@ -9,3 +9,18 @@ ByteCart is a South Korea–based e-commerce company specialising in consumer el
 - Customer demographics and loyalty tiers
 - Product catalogue and category information
 - Delivery and fulfilment performance
+
+## Dataset Structure
+
+The cleaned dataset consists of 5 tables:
+
+- `customers_final` (2,800 records)
+- `orders_final` (54,457 records)
+- `order_items_final` (80,397 records)
+- `deliveries_final` (52,335 records)
+- `products_final` (400 records)
+
+The relationship between the tables is presented in the diagram below:
+
+<img width="1484" height="812" alt="image" src="https://github.com/user-attachments/assets/b97465f9-7a44-484c-aabc-d9938a0c8578" />
+
