@@ -127,18 +127,28 @@ MODIFY COLUMN age INT;
 
 -- Inspect
 SELECT DISTINCT tier
-FROM   customers_clean;
+FROM   customers_clean
+ORDER BY 1;
 
--- Finding: mix of full names and abbreviations.
+-- Inspect: tiers written fully in uppercase or lowercase.
+SELECT DISTINCT tier
+FROM   customers_clean
+WHERE  BINARY UPPER(TRIM(tier)) = BINARY TRIM(tier)
+   OR  BINARY LOWER(TRIM(tier)) = BINARY TRIM(tier)
+ORDER BY 1;
+
+-- Finding: mix of full names, abbreviations, and casing variants.
 
 UPDATE customers_clean
-SET    tier = CASE tier
-                  WHEN 'Reg'     THEN 'Regular'
-                  WHEN 'Slvr'    THEN 'Silver'
-                  WHEN 'Gld'     THEN 'Gold'
-                  WHEN 'Prem'    THEN 'Premium'
-                  ELSE tier
-              END;
+SET    tier = CASE
+           WHEN LOWER(TRIM(tier)) LIKE 'reg%'              THEN 'Regular'
+           WHEN LOWER(TRIM(tier)) LIKE 'slv%'              
+			 OR LOWER(TRIM(tier)) LIKE 'silver%'             THEN 'Silver'
+           WHEN LOWER(TRIM(tier)) LIKE 'gld%'
+             OR LOWER(TRIM(tier)) LIKE 'gold%'             THEN 'Gold'
+           WHEN LOWER(TRIM(tier)) LIKE 'prem%'             THEN 'Premium'
+           ELSE TRIM(tier)
+       END;
 
 -- ─────────────────────────────────────────────────────────────
 -- SECTION 5  │  registration_date
