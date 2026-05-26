@@ -12,7 +12,7 @@
 --   [FIXED]   is_on_time / is_returned / complaint_raised — mixed boolean
 --             representations (True/False/1/0/Yes/No and variants)
 --   [FIXED]   package_condition — mixed case and trailing spaces
---   [FIXED]   return_reason — empty strings and 'N/A' placeholders → NULL
+--   [FIXED]   return_reason - empty strings converted to NULL
 --   [FIXED]   promised_shipping_days / delivery_attempts / delay_days
 --             / delivery_satisfaction — cast to correct types
 --   [ADDED]   delay_days_calculated — recomputed from first_attempt_date
