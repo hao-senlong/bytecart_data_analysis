@@ -141,11 +141,18 @@ ORDER BY 1;
 
 UPDATE products_clean
 SET    category = CASE
-           WHEN UPPER(TRIM(category)) = 'AUDIO'                THEN 'Audio'
-           WHEN UPPER(TRIM(category)) = 'COMPUTER PERIPHERALS' THEN 'Computer Peripherals'
-           WHEN UPPER(TRIM(category)) = 'GAMING'               THEN 'Gaming'
-           WHEN UPPER(TRIM(category)) = 'MOBILE ACCESSORIES'   THEN 'Mobile Accessories'
-           WHEN UPPER(TRIM(category)) = 'SMART HOME'           THEN 'Smart Home'
+           WHEN UPPER(TRIM(category)) = 'AUDIO'                   THEN 'Audio'
+           WHEN UPPER(TRIM(category)) = 'COMPUTER PERIPHERALS'    THEN 'Computer Peripherals'
+           WHEN UPPER(TRIM(category)) = 'GAMING'                  THEN 'Gaming'
+           WHEN UPPER(TRIM(category)) = 'LAPTOPS & COMPUTERS' 
+			 OR UPPER(TRIM(category)) = 'LAPTOPS AND COMPUTERS'   THEN 'Laptops & Computers'
+           WHEN UPPER(TRIM(category)) = 'MOBILE ACCESSORIES'      THEN 'Mobile Accessories'
+           WHEN UPPER(TRIM(category)) = 'SMART HOME'              THEN 'Smart Home'
+           WHEN UPPER(TRIM(category)) = 'SMARTPHONES & TABLETS' 
+			 OR UPPER(TRIM(category)) = 'SMARTPHONES AND TABLETS' THEN 'Smartphones & Tablets'
+		   WHEN UPPER(TRIM(category)) = 'TV & DISPLAYS' 
+			 OR UPPER(TRIM(category)) = 'TV AND DISPLAYS'         THEN 'TV & Displays'
+		   WHEN UPPER(TRIM(category)) = 'WEARABLES'               THEN 'Wearables'
            ELSE TRIM(REPLACE(category, 'and', '&'))
        END;
 
