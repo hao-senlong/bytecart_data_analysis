@@ -6,7 +6,7 @@ ByteCart is a South Korea–based e-commerce company specialising in consumer el
  
 The dataset spans 2021–2024 and covers more than 50,000 orders placed by approximately 2,800 customers, encompassing sales performance, customer demographics, product catalogue, and delivery operations.
  
-An interactive Tableau dashboard summarising the findings can be found **[here](https://public.tableau.com/app/profile/alexey.n2936/viz/ByteCartexploratoryanalysis_clean/5_Dashboard#1)**.
+An interactive Tableau dashboard summarising the findings can be found **[here](https://public.tableau.com/app/profile/alexey.n2936/viz/ByteCartexploratoryanalysis_clean/5_Dashboard)**.
 
 ---
  
