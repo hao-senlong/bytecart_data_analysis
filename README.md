@@ -32,7 +32,7 @@ The SQL files used to build, clean, and validate the dataset are available **[he
  
 ## Executive Summary
 
-<img width="1893" height="1059" alt="image" src="https://github.com/user-attachments/assets/02c86253-bcb5-43cf-84ac-5cef8e5f2cad" />
+<img width="2342" height="1132" alt="image" src="https://github.com/user-attachments/assets/29e2ce4b-7ea1-4ab3-a898-20d0dc7f2f69" />
 
 ByteCart's overall performance across 2021–2024 was positive, with revenue CAGR (compound annual growth rate) of **5.66%** and profit CAGR of **7.82%**. However, a closer look reveals two trends worth monitoring: **order-level profitability has stagnated** rather than grown, and **new customer acquisition has dropped sharply** across all product categories.
  
@@ -45,7 +45,7 @@ ByteCart's overall performance across 2021–2024 was positive, with revenue CAG
  
 ### 1. Overall Trends
 
-<img width="1887" height="544" alt="image" src="https://github.com/user-attachments/assets/b3028e93-85fd-4936-8b3a-87b2e170f477" />
+<img width="2341" height="604" alt="image" src="https://github.com/user-attachments/assets/23c7cf2a-380c-4fe2-9f53-628760976c2b" />
 
 - **Top-line growth is driven by order volume, not order value.** Revenue and profit both grew steadily across the four-year period, with profit outpacing revenue (CAGR 7.82% vs. 5.66%). Monthly trends for total profit and number of orders track each other very closely throughout, suggesting profit growth is primarily a function of order volume.
 - **Seasonality is a consistent and significant feature of the business.** Sales spike reliably during holiday periods and contract sharply afterwards, a pattern stable across all four years that should be factored into any operational or marketing planning.
