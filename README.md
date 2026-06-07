@@ -31,7 +31,9 @@ The SQL files used to build, clean, and validate the dataset are available **[he
 ---
  
 ## Executive Summary
- 
+
+<img width="1893" height="1059" alt="image" src="https://github.com/user-attachments/assets/02c86253-bcb5-43cf-84ac-5cef8e5f2cad" />
+
 ByteCart's overall performance across 2021–2024 was positive, with revenue CAGR (compound annual growth rate) of **5.66%** and profit CAGR of **7.82%**. However, a closer look reveals two trends worth monitoring: **order-level profitability has stagnated** rather than grown, and **new customer acquisition has dropped sharply** across all product categories.
  
 - **Overall growth is present, but order-level metrics are not keeping pace.** Total profits and revenue grew consistently, yet profit per order and average order value have stagnated — and shown a modest decline — over the period. This points to growth being driven by volume rather than by increasing order value.
@@ -42,21 +44,27 @@ ByteCart's overall performance across 2021–2024 was positive, with revenue CAG
 ## Insights Deep Dive
  
 ### 1. Overall Trends
- 
+
+<img width="1887" height="544" alt="image" src="https://github.com/user-attachments/assets/b3028e93-85fd-4936-8b3a-87b2e170f477" />
+
 - **Top-line growth is driven by order volume, not order value.** Revenue and profit both grew steadily across the four-year period, with profit outpacing revenue (CAGR 7.82% vs. 5.66%). Monthly trends for total profit and number of orders track each other very closely throughout, suggesting profit growth is primarily a function of order volume.
 - **Seasonality is a consistent and significant feature of the business.** Sales spike reliably during holiday periods and contract sharply afterwards, a pattern stable across all four years that should be factored into any operational or marketing planning.
 - **Per-order metrics have not grown with the business.** Profit per order is down roughly 2% over four years, with AOV declining further. While the absolute drop is modest and recent months look more like stagnation than decline, the absence of any upward trend in order-level value is potentially troubling and worth monitoring.
 ---
  
-### 2. Profit Metrics by Category
- 
+### 2. Profit Metrics
+
+<img width="1831" height="415" alt="image" src="https://github.com/user-attachments/assets/89afab06-0ff8-4b92-b08e-5fa1ee858f48" />
+
 - **Traditional top categories hold their ground, but with caveats.** TVs & Displays and Laptops & Computers remain the two largest profit contributors in 2024 as they were in 2021, but their trajectories differ. TVs & Displays posted an 8.4% decline over the period. Laptops & Computers grew by 19.9% overall, but its 2022 peak remains its highest point — it has not fully recovered to that level since.
 - **Smart Home and Wearables have emerged as high-growth contributors, while Cameras & Photography is the clearest underperformer.** Smart Home (+188.9%) and Wearables (+97.4%) have established themselves as significant profit contributors, with consistent year-on-year growth across the full period. At the other end, Cameras & Photography posted a 33.5% profit decline — the steepest drop across all categories — and the decline has been consistent year-on-year.
 - **The category mix is shifting from high absolute profit to high margin.** TVs & Displays and Laptops & Computers generate the highest profit per item but carry the lowest margins — around 11–13%. The emerging growth categories run the opposite profile: Smart Home and Wearables both combine relatively low profit per item with relatively high margins. This shift likely explains the tension identified in the overall trends — as higher-margin but lower-priced categories take a growing share of the mix, overall profits continue rising while per-order value stagnates.
 ---
  
 ### 3. Customer Metrics
- 
+
+<img width="1841" height="380" alt="image" src="https://github.com/user-attachments/assets/eb5d9331-0fb9-417c-9b86-32370dee5116" />
+
 - **Customer growth mirrors the profit composition shift — and helps explain it.** The largest increases in customer numbers are in Smart Home (+84.1%) and Wearables (+50.5%) — the same categories leading profit growth. As with the profit analysis, this growth is concentrated in categories with high margins but low profit per item, which contributes to the same tension: overall profits rising while per-order value stagnates.
 - **Laptops & Computers is a category to watch.** It shows overall customer growth across the full period, but its peak was in 2022 and — unlike with profits — there has been no rebound since, with customer numbers declining continuously through 2023 and 2024.
 - **The same decline seen in profit metrics is reflected in customer numbers for weaker categories.** TVs & Displays customer base declined by 4.3%, and Cameras & Photography shrank by a further 16.2%, from 470 customers in 2021 to 394 in 2024.
