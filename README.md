@@ -7,6 +7,7 @@ ByteCart is a South Korea–based e-commerce company specialising in consumer el
 The dataset spans 2021–2024 and covers more than 50,000 orders placed by approximately 2,800 customers, encompassing sales performance, customer demographics, product catalogue, and delivery operations.
  
 An interactive Tableau dashboard summarising the findings can be found **[here](https://public.tableau.com/app/profile/alexey.n2936/viz/ByteCartexploratoryanalysis_clean/5_Dashboard#1)**.
+
 ---
  
 ## Data Structure
@@ -26,6 +27,7 @@ The relationship between the tables is presented in the diagram below:
 <img width="1484" height="812" alt="image" src="https://github.com/user-attachments/assets/b97465f9-7a44-484c-aabc-d9938a0c8578" />
 
 The SQL files used to build, clean, and validate the dataset are available **[here](https://github.com/hao-senlong/bytecart_data_analysis/tree/main/Original%20data%20and%20data%20cleaning)**. The folder includes a schema creation script, individual cleaning scripts for each table, and a master script covering cross-table validation.
+
 ---
  
 ## Executive Summary
