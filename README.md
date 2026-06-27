@@ -1,3 +1,5 @@
+[🇰🇷 한국어 버전 보기](#korean)
+
 <img width="1200" height="420" alt="image" src="https://github.com/user-attachments/assets/79c1b5ea-92d6-43c6-b2ec-6ba2f2ce2124" />
 
 ## Project Background
@@ -84,3 +86,69 @@ ByteCart's overall performance across 2021–2024 was positive, with revenue CAG
 - **The "new customer" definition is constrained by the data window.** A new customer is defined as one with no orders recorded in 2021. If some of those flagged as new in later years had in fact purchased before 2021, the reported acquisition shares would already be overstated — meaning the actual problem is likely starker than the figures indicate, not less.
 - **All figures are reported in nominal terms and have not been adjusted for inflation.** Given that Korea experienced notable inflation over 2021–2024, this has two implications: reported profit and revenue growth may overstate real performance, and the stagnation in per-order metrics may be more pronounced in real terms than the nominal figures suggest.
 - **This analysis covers a subset of the available data dimensions.** Due to scope constraints, several areas — including regional variation, customer tier behaviour, retention patterns, and delivery performance — have not been explored. Further analysis across these dimensions would likely add meaningful context to the findings presented here.
+
+
+
+<a name="korean"></a>
+
+═══════════════════════ 한국어 ═══════════════════════
+
+<img width="1200" height="420" alt="image" src="https://github.com/user-attachments/assets/79c1b5ea-92d6-43c6-b2ec-6ba2f2ce2124" />
+
+## 프로젝트 개요
+
+ByteCart는 가전제품 및 액세서리를 판매하는 국내 이커머스 기업이다. 본 프로젝트는 사내 데이터 분석가의 관점에서 2021년부터 2024년까지 4년간의 사업 성과를 분석하고, 향후 성장에 영향을 미칠 수 있는 잠재적 위험 신호와 구조적인 변화를 파악하여 경영진에게 보고하는 것을 목적으로 수행되었다.
+
+분석 데이터는 2021~2024년 동안 발생한 약 5만 4천 건의 주문과 약 2,800명의 고객 정보를 포함하며, 매출, 고객 맟 상품 정보, 배송 데이터 등 포홤다.
+
+분석 결과를 종합한 Tableau 대시보드는 [**여기**](https://public.tableau.com/app/profile/alexey.n2936/viz/ByteCartexploratoryanalysis_clean/5_Dashboard)에서 확인할 수 있다.
+
+---
+
+## 데이터 구조
+
+정제된 데이터셋은 다음의 다섯 개 테이블로 구성되어 있다.
+
+| 테이블 | 레코드 수 |
+|---|---:|
+| `customers_final` | 2,800 |
+| `orders_final` | 54,457 |
+| `order_items_final` | 80,397 |
+| `deliveries_final` | 52,335 |
+| `products_final` | 400 |
+
+테이블 간 관계는 아래 ERD에서 확인할 수 있다.
+
+<img width="1484" height="812" alt="image" src="https://github.com/user-attachments/assets/b97465f9-7a44-484c-aabc-d9938a0c8578" />
+
+데이터셋 정제 및 검증에 사용한 SQL 스크립트는 [**여기**](https://github.com/hao-senlong/bytecart_data_analysis/tree/main/Original%20data%20and%20data%20cleaning)에서 확인할 수 있다. 해당 폴더에는 스키마 생성 스크립트, 각 테이블별 데이터 정제 스크립트, 그리고 테이블 간 데이터 검증을 수행하는 통합 스크립트가 포함되어 있다.
+
+---
+
+## 핵심 요약
+
+<img width="2342" height="1132" alt="image" src="https://github.com/user-attachments/assets/29e2ce4b-7ea1-4ab3-a898-20d0dc7f2f69" />
+
+2021~2024년 동안 ByteCart의 전체 사업 성과는 전반적으로 긍정적인 흐름을 보였다. **매출 CAGR(연평균성장률)은 5.66%**, **수익 CAGR은 7.82%를 기록**했다. 다만 세부적으로 살펴보면 향후 지속적인 모니터링이 필요한 두 가지 변화가 확인되었다. 첫째, **주문당 수익성은 성장하지 못하고 정체되는 모습을 보였으며**, 둘째, **모든 상품 카테고리에서 신규 고객 유입이 크게 감소**했다.
+
+- **전체 실적은 성장했지만 주문 단위의 성과는 이에 미치지 못했다.** 총매출과 총수익은 꾸준히 증가했지만 주문당 수익과 평균 주문 금액(AOV)는 지난 4년간 정체되거나 소폭 감소하는 추세를 보였다. 이는 사업 성장이 주문당 구매 규모 확대보다 주문량 증가에 의해 견인되고 있음을 시사한다.
+
+- **상품 포트폴리오는 높은 마진율을 갖지만 단가가 낮은 카테고리 중심으로 변화하고 있다.** Smart Home(+188.9%)과 Wearables(+97.4%)는 가장 높은 수익 성장률을 기록한 카테고리로, 수익률은 우수하지만 상품 단가가 낮아 품목당 절대 수익은 TVs & Displays와 같은 고가 제품군보다 크게 낮다. 이러한 제품 구성의 변화가 주문당 수익성 정체의 주요 원인으로 판단된다.
+
+- **고객 구성 역시 동일한 변화가 나타나고 있으나 신규 고객 유입은 크게 둔화되고 있다.** 고객 증가율이 가장 높은 카테고리는 Smart Home과 Wearables로, 수익 성장과 동일한 패턴을 보였다. 이는 고가 제품 구매 확대보다 판매 물량 증가에 기반한 성장이라는 점을 다시 한번 보여준다. 반면 신규 고객 비중은 모든 카테고리에서 2022년 12-16% 수준에서 2024년에는 0.8-3.7%까지 감소했다.
+
+---
+
+## 주요 분석 결과
+
+### 1. 전체 동향
+
+<img width="2341" height="604" alt="image" src="https://github.com/user-attachments/assets/23c7cf2a-380c-4fe2-9f53-628760976c2b" />
+
+- **매출 성장의 핵심 동인은 객단가가 아닌 주문량 증가였다.** 2021~2024년 동안 매출과 수익은 모두 꾸준한 증가세를 보였으며, 수익 증가율(CAGR 7.82%)은 매출 증가율(CAGR 5.66%)을 상회했다. 월별 추이를 살펴보면 총수익과 주문 건수는 전 기간에 걸쳐 매우 유사한 흐름을 보였으며, 이는 수익 증가가 주문량 증가에 크게 의존하고 있음을 시사한다.
+
+- **계절성은 사업 전반에서 일관되게 나타나는 중요한 특성이다.** 연말·연휴 시즌에는 매출이 크게 증가하고 이후에는 다시 감소하는 패턴이 4년 동안 동일하게 반복되었다. 따라서 향후 운영 및 마케팅 계획을 수립할 때 이러한 계절성을 충분히 고려할 필요가 있다.
+
+- **주문 단위의 성과는 사업 성장 속도를 따라가지 못하고 있다.** 주문당 수익은 4년간 약 2% 감소했으며 객단가(AOV)는 이보다 더 큰 폭으로 하락했다. 감소 폭 자체는 크지 않고 최근에는 하락보다는 정체에 가까운 모습을 보였지만, 주문당 가치가 장기간 증가하지 않고 있다는 점은 지속적으로 모니터링할 필요가 있다.
+
+---
